@@ -42,17 +42,19 @@ function decode(expr) {
   let arrLetter = [];
   
   for (let item of arr) {
-    let arr2 = item.match(/.{1,2}/g);
     let str = '';
+    if (item === '**********') {
+      str += ' ';
+      arrLetter.push(str);
+    }
+    let arr2 = item.match(/.{1,2}/g);   
+    
     for (let i of arr2) {      
       if (i === '10') {
         str += '.';
       } else if (i === '11') {
         str += '-';
-      } else if (i === '**') {
-        str += ' ';
-        continue;
-      }      
+      } 
     }
     arrLetter.push(MORSE_TABLE[str]);
   }
